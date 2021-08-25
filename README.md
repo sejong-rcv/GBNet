@@ -90,36 +90,12 @@ python3 scripts/infer.py --checkpoint <checkpoint.ckpt> --input <image or folder
 
 | Model | Abs.Rel. | Sqr.Rel | RMSE | RMSElog | d < 1.25 |
 | :--- | :---: | :---: | :---: |  :---: |  :---: |
-| _ResNet18, Self-Supervised, 384x640, ImageNet &rightarrow; DDAD (D)_ | _0.213_ | _4.975_ | _18.051_ | _0.340_ | _0.761_ |
-| _PackNet,  Self-Supervised, 384x640, DDAD (D)_ | _0.162_ | _3.917_ | _13.452_ | _0.269_ | _0.823_ |
-| [ResNet18, Self-Supervised, 384x640, ImageNet &rightarrow; DDAD (D)](https://tri-ml-public.s3.amazonaws.com/github/packnet-sfm/models/ResNet18_MR_selfsup_D.ckpt)* | 0.227 | 11.293 | 17.368 | 0.303 | 0.758 |
-| [PackNet,  Self-Supervised, 384x640, DDAD (D)](https://tri-ml-public.s3.amazonaws.com/github/packnet-sfm/models/PackNet01_MR_selfsup_D.ckpt)* | 0.173 | 7.164 | 14.363 | 0.249 | 0.835 |
-
-*: Note that this repository's results differ slightly from the ones reported in our [CVPR'20 paper](https://arxiv.org/abs/1905.02693) (first two rows), although conclusions are the same. Since CVPR'20, we have officially released an updated [DDAD dataset](https://github.com/TRI-ML/DDAD) to account for privacy constraints and improve scene distribution. Please use the latest numbers when comparing to the official DDAD release.
-
-### Precomputed Depth Maps
-
-For convenience, we also provide pre-computed depth maps for supervised training and evaluation:
-
-- PackNet, Self-Supervised Scale-Aware, 192x640, CS &rightarrow; K |
-[eigen_train_files](https://tri-ml-public.s3.amazonaws.com/github/packnet-sfm/depth_maps/KITTI_raw/eigen_train_files/KITTI_raw-eigen_train_files-PackNet01_MR_velsup_CStoK.tar.gz) |
-[eigen_zhou_files](https://tri-ml-public.s3.amazonaws.com/github/packnet-sfm/depth_maps/KITTI_raw/eigen_zhou_files/KITTI_raw-eigen_zhou_files-PackNet01_MR_velsup_CStoK.tar.gz) |
-[eigen_val_files](https://tri-ml-public.s3.amazonaws.com/github/packnet-sfm/depth_maps/KITTI_raw/eigen_val_files/KITTI_raw-eigen_val_files-PackNet01_MR_velsup_CStoK.tar.gz) |
-[eigen_test_files](https://tri-ml-public.s3.amazonaws.com/github/packnet-sfm/depth_maps/KITTI_raw/eigen_test_files/KITTI_raw-eigen_test_files-PackNet01_MR_velsup_CStoK.tar.gz) |
-
-- PackNet, Semi-Supervised (densified GT), 192x640, CS &rightarrow; K |
-[eigen_train_files](https://tri-ml-public.s3.amazonaws.com/github/packnet-sfm/depth_maps/KITTI_raw/eigen_train_files/KITTI_raw-eigen_train_files-PackNet01_MR_semisup_CStoK.tar.gz) |
-[eigen_zhou_files](https://tri-ml-public.s3.amazonaws.com/github/packnet-sfm/depth_maps/KITTI_raw/eigen_zhou_files/KITTI_raw-eigen_zhou_files-PackNet01_MR_semisup_CStoK.tar.gz) |
-[eigen_val_files](https://tri-ml-public.s3.amazonaws.com/github/packnet-sfm/depth_maps/KITTI_raw/eigen_val_files/KITTI_raw-eigen_val_files-PackNet01_MR_semisup_CStoK.tar.gz) |
-[eigen_test_files](https://tri-ml-public.s3.amazonaws.com/github/packnet-sfm/depth_maps/KITTI_raw/eigen_test_files/KITTI_raw-eigen_test_files-PackNet01_MR_semisup_CStoK.tar.gz) |
-
-## License
-
-The source code is released under the [MIT license](LICENSE.md).
+| ResNet18, Self-Supervised, 384x640, ImageNet &rightarrow; DDAD (D) | 0.227 | 11.293 | 17.368 | 0.303 | 0.758 |
+| PackNet,  Self-Supervised, 384x640, DDAD (D) | 0.173 | 7.164 | 14.363 | 0.249 | 0.835 |
+| GBNet, Self-Supervised, 384x640, ImageNet &rightarrow; DDAD (D) | 0.148 | 3.329 | 14.471 | 0.244 | 0.818 |
+| GBNet,  Semi-Supervised, 384x640, DDAD (D) | 0.124 | 2.476 | 13.276 | 0.220 | 0.846 |
 
 ## References
-
-
 
 <a id="cvpr-packnet"> </a>
 **3D Packing for Self-Supervised Monocular Depth Estimation (CVPR 2020 oral)** \
