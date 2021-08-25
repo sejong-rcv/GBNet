@@ -53,8 +53,7 @@ python3 scripts/infer.py --checkpoint <checkpoint.ckpt> --input <image or folder
 
 <a id="cvpr-packnet"> </a>
 **3D Packing for Self-Supervised Monocular Depth Estimation (CVPR 2020 oral)** \
-*Vitor Guizilini, Rares Ambrus, Sudeep Pillai, Allan Raventos and Adrien Gaidon*, [**[paper]**](https://arxiv.org/abs/1905.02693), [**[video]**](https://www.youtube.com/watch?v=b62iDkLgGSI)
-
+*Vitor Guizilini, Rares Ambrus, Sudeep Pillai, Allan Raventos and Adrien Gaidon*
 ```
 @inproceedings{packnet,
   author = {Vitor Guizilini and Rares Ambrus and Sudeep Pillai and Allan Raventos and Adrien Gaidon},
