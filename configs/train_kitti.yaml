@@ -1,14 +1,14 @@
 wandb:
     dry_run: True                        # Wandb dry-run (not logging)
     name: 'GBNet'                                      # Wandb run name
-    project: "DPT"  # Wandb project
+    project: " "  # Wandb project
     entity: "bigchan"    # Wandb entity
     tags: []                                      # Wandb tags
     dir: './'  
 model:
-    name: 'VelSupModel'
+    name: 'SelfSupModel'
     optimizer:
-        name: 'AdamW'
+        name: 'Adam'
         depth:
             lr: 0.00006
         pose:
@@ -31,7 +31,6 @@ model:
         supervised_method : 'sparse-sal'
         num_scales: 1
         supervised_num_scales : 1
-        smooth_loss_weight : 0.001 
 datasets:
     augmentation:
         image_shape: (192, 640)
