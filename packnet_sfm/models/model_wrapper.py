@@ -409,29 +409,11 @@ def setup_depth_net(config, prepared, **kwargs):
     """
     print0(pcolor('DepthNet: %s' % config.name, 'yellow'))
 
-    if config.name=="DPT" :
-        depth_net = DPTDepthModel(
-            scale=0.00006016,
-            shift=0.00579,
-            invert=False,
-            backbone="swin_rn50_384",
-            non_negative=True,
-            enable_attention_hooks=False,
-        )
-    elif config.name=="PackSwin":
-        depth_net = PackSwinNet(
-           version='1A',
-            dropout=0.0
-        )
-    elif config.name=="DPTSwin":
-        depth_net=DPTSwinNet(
-            non_negative=True,
-        )
-    else:
-        depth_net = load_class_args_create(config.name,
-            paths=['packnet_sfm.networks.depth',],
-            args={**config, **kwargs},
-        )
+ 
+    depth_net = load_class_args_create(config.name,
+        paths=['packnet_sfm.networks.depth',],
+        args={**config, **kwargs},
+    )
 
     if not prepared and config.checkpoint_path is not '':
         depth_net = load_network(depth_net, config.checkpoint_path,

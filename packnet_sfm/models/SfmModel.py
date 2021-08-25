@@ -94,16 +94,21 @@ class SfmModel(nn.Module):
     def add_depth_net(self, depth_net):
         """Add a depth network to the model"""
         self.depth_net = depth_net
-
+    def add_depth_net2(self, depth_net):
+        """Add a depth network to the model"""
+        self.depth_net_2 = depth_net
+    def add_depth_net3(self, depth_net):
+        """Add a depth network to the model"""
+        self.depth_net_3 = depth_net    
     def add_pose_net(self, pose_net):
         """Add a pose network to the model"""
         self.pose_net = pose_net
 
-    def compute_inv_depths(self, image):
+    def compute_inv_depths(self,depth_model, image):
         """Computes inverse depth maps from single images"""
         # Randomly flip and estimate inverse depth maps
         flip_lr = random.random() < self.flip_lr_prob if self.training else False
-        inv_depths = make_list(flip_model(self.depth_net, image, flip_lr))
+        inv_depths = make_list(flip_model(depth_model, image, flip_lr))
         # If upsampling depth maps
         if self.upsample_depth_maps:
             inv_depths = interpolate_scales(
@@ -134,7 +139,17 @@ class SfmModel(nn.Module):
             Dictionary containing predicted inverse depth maps and poses
         """
         # Generate inverse depth predictions
-        inv_depths = self.compute_inv_depths(batch['rgb'])
+        inv_depths = self.compute_inv_depths(self.depth_net,batch['rgb'])
+        input_2=torch.cat((inv_depths[0],inv_depths[0],inv_depths[0]),dim=1)
+        inv_depths_2 = self.compute_inv_depths(self.depth_net_2,input_2)
+        input_3=torch.cat((inv_depths_2[0],inv_depths_2[0],inv_depths_2[0]),dim=1)
+        inv_depths_3 = self.compute_inv_depths(self.depth_net_3,input_3)
+
+        len_=len(inv_depths)
+
+        for i in range(len_):
+           inv_depths[i]=inv_depths[i]*(0.2)+inv_depths_2[i]*(0.3)+inv_depths_3[i]*(0.5)
+           
         # Generate pose predictions if available
         pose = None
         if 'rgb_context' in batch and self.pose_net is not None:
