@@ -1,0 +1,66 @@
+wandb:
+    dry_run: False                                 # Wandb dry-run (not logging)
+    name: ''                                      # Wandb run name
+    project: "DPT"  # Wandb project
+    entity: "bigchan"    # Wandb entity
+    dir: './' 
+model:
+    # checkpoint_path: /workspace/packnet-sfm/PackNet01_MR_velsup_CStoK.ckpt
+    name: 'SelfSupModel'
+    optimizer:
+        name: 'Adam'
+        depth:
+            lr: 0.00009
+        pose:
+            lr: 0.00009
+    scheduler:
+        name: 'StepLR'
+        step_size: 30
+        gamma: 0.5
+    depth_net:
+        name: 'PackNet01'
+        version: '1A'
+    pose_net:
+        name: 'PoseNet'
+        version: ''
+    params:
+        crop: ''
+        min_depth: 0.0
+        max_depth: 200.0
+checkpoint:
+    # Folder where .ckpt files will be saved during training
+    filepath: ./checkpoint/
+    save_top_k: -1
+wandb:
+    dry_run: True                                 # Wandb dry-run (not logging)
+    # name: 'size'                                      # Wandb run name
+    # project: DDAD  # Wandb project
+    # entity: os.environ.get("WANDB_ENTITY", "")    # Wandb entity
+    # tags: []                                      # Wandb tags
+    # dir: ./wandb
+datasets:
+    augmentation:
+        image_shape: (384, 640)
+    train:
+        batch_size: 2
+        num_workers: 16
+        dataset: ['DGP']
+        path: ['/data/datasets/DDAD/ddad.json']
+        split: ['train']
+        depth_type: ['lidar']
+        cameras: [['camera_01']]
+        repeat: [5]
+    validation:
+        num_workers: 8
+        dataset: ['DGP']
+        path: ['/data/datasets/DDAD/ddad.json']
+        split: ['val']
+        depth_type: ['lidar']
+        cameras: [['camera_01']]
+    test:
+        num_workers: 8
+        dataset: ['DGP']
+        path: ['/data/datasets/DDAD/ddad.json']
+        split: ['val']
+        depth_type: ['lidar']
+        cameras: [['camera_01']]

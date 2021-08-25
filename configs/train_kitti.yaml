@@ -1,0 +1,55 @@
+wandb:
+    dry_run: True                        # Wandb dry-run (not logging)
+    name: 'GBNet'                                      # Wandb run name
+    project: "DPT"  # Wandb project
+    entity: "bigchan"    # Wandb entity
+    tags: []                                      # Wandb tags
+    dir: './'  
+model:
+    name: 'VelSupModel'
+    optimizer:
+        name: 'AdamW'
+        depth:
+            lr: 0.00006
+        pose:
+            lr: 0.00006
+    scheduler:
+        name: 'StepLR'
+        step_size: 30
+        gamma: 0.5
+    depth_net:
+        name: 'DPT'
+        version: '1A'
+    pose_net:
+        name: 'PoseNet'
+        version: ''
+    params:
+        crop: 'garg'
+        min_depth: 0.0
+        max_depth: 80.0
+    loss:
+        supervised_method : 'sparse-sal'
+        num_scales: 1
+        supervised_num_scales : 1
+        smooth_loss_weight : 0.001 
+datasets:
+    augmentation:
+        image_shape: (192, 640)
+    train:
+        batch_size: 2
+        num_workers: 16
+        dataset: ['KITTI']
+        path: ['/data/datasets/KITTI_raw']
+        split: ['data_splits/eigen_zhou_files.txt']
+        depth_type: ['velodyne']
+        repeat: [2]
+    validation:
+        dataset: ['KITTI']
+        path: ['/data/datasets/KITTI_raw']
+        split: ['data_splits/eigen_test_files.txt']
+        depth_type: ['velodyne']
+    test:
+        dataset: ['KITTI']
+        path: ['/data/datasets/KITTI_raw']
+        split: ['data_splits/eigen_test_files.txt']
+        depth_type: ['velodyne']
