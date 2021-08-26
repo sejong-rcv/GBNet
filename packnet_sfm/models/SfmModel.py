@@ -104,11 +104,11 @@ class SfmModel(nn.Module):
         """Add a pose network to the model"""
         self.pose_net = pose_net
 
-    def compute_inv_depths(self,depth_model, image):
+    def compute_inv_depths(self, image):
         """Computes inverse depth maps from single images"""
         # Randomly flip and estimate inverse depth maps
         flip_lr = random.random() < self.flip_lr_prob if self.training else False
-        inv_depths = make_list(flip_model(depth_model, image, flip_lr))
+        inv_depths = make_list(flip_model(self.depth_net, image, flip_lr))
         # If upsampling depth maps
         if self.upsample_depth_maps:
             inv_depths = interpolate_scales(
@@ -139,11 +139,13 @@ class SfmModel(nn.Module):
             Dictionary containing predicted inverse depth maps and poses
         """
         # Generate inverse depth predictions
-        inv_depths = self.compute_inv_depths(self.depth_net,batch['rgb'])
+        inv_depths = self.compute_inv_depths(batch['rgb'])
+        
         input_2=torch.cat((inv_depths[0],inv_depths[0],inv_depths[0]),dim=1)
-        inv_depths_2 = self.compute_inv_depths(self.depth_net_2,input_2)
+        inv_depths_2 = self.compute_inv_depths(input_2)
+        
         input_3=torch.cat((inv_depths_2[0],inv_depths_2[0],inv_depths_2[0]),dim=1)
-        inv_depths_3 = self.compute_inv_depths(self.depth_net_3,input_3)
+        inv_depths_3 = self.compute_inv_depths(input_3)
 
         len_=len(inv_depths)
 
