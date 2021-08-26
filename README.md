@@ -1,4 +1,4 @@
-## GBNet : GBNet: Gradient Boosting Network for Monocular Depth Estimation
+## GBNet : Gradient Boosting Network for Monocular Depth Estimation
 ## Install
 
 ```bash
@@ -46,13 +46,25 @@ python3 scripts/infer.py --checkpoint <checkpoint.ckpt> --input <image or folder
 | :--- | :---: | :---: | :---: |  :---: |  :---: |
 | ResNet18, Self-Supervised, 384x640, ImageNet &rightarrow; DDAD (D) | 0.227 | 11.293 | 17.368 | 0.303 | 0.758 |
 | PackNet,  Self-Supervised, 384x640, DDAD (D) | 0.173 | 7.164 | 14.363 | 0.249 | 0.835 |
-| GBNet, Self-Supervised, 384x640, ImageNet &rightarrow; DDAD (D) | 0.148 | 3.329 | 14.471 | 0.244 | 0.818 |
-| GBNet,  Semi-Supervised, 384x640, DDAD (D) | 0.124 | 2.476 | 13.276 | 0.220 | 0.846 |
+| [GBNet, Self-Supervised, 384x640, ImageNet &rightarrow; DDAD (D)](http://multispectral.sejong.ac.kr:8080/share.cgi?ssid=0gv2Kx0) | 0.148 | 3.329 | 14.471 | 0.244 | 0.818 |
+| [GBNet,  Semi-Supervised, 384x640, DDAD (D)](http://multispectral.sejong.ac.kr:8080/share.cgi?ssid=0rycygL) | 0.124 | 2.476 | 13.276 | 0.220 | 0.846 |
 
 ## References
 
+<a id="GBNet"> </a>
+**GBNet : Gradient Boosting Network for Monocular Depth Estimation (ICCAS)** \
+*Daechan Han and Yukyung Choi*
+```
+@inproceedings{GBNet,
+  author = {Daechan Han and Yukyung Choi},
+  title = {GBNet : Gradient Boosting Network for Monocular Depth Estimation},
+  booktitle = {International Conference of Contral, Automation and Systems(ICCAS)},
+  year = {2021},
+}
+```
+
 <a id="cvpr-packnet"> </a>
-**3D Packing for Self-Supervised Monocular Depth Estimation (CVPR 2020 oral)** \
+**3D Packing for Self-Supervised Monocular Depth Estimation** \
 *Vitor Guizilini, Rares Ambrus, Sudeep Pillai, Allan Raventos and Adrien Gaidon*
 ```
 @inproceedings{packnet,
