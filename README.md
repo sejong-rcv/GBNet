@@ -46,7 +46,7 @@ python3 scripts/infer.py --checkpoint <checkpoint.ckpt> --input <image or folder
 | :--- | :---: | :---: | :---: |  :---: |  :---: |
 | ResNet18, Self-Supervised, 384x640, ImageNet &rightarrow; DDAD (D) | 0.227 | 11.293 | 17.368 | 0.303 | 0.758 |
 | PackNet,  Self-Supervised, 384x640, DDAD (D) | 0.173 | 7.164 | 14.363 | 0.249 | 0.835 |
-| [GBNet, Self-Supervised, 384x640, ImageNet &rightarrow; DDAD (D)](http://multispectral.sejong.ac.kr:8080/share.cgi?ssid=0gv2Kx0) | 0.148 | 3.329 | 14.471 | 0.244 | 0.818 |
+| [GBNet, Self-Supervised, 384x640, DDAD (D)](http://multispectral.sejong.ac.kr:8080/share.cgi?ssid=0gv2Kx0) | 0.148 | 3.329 | 14.471 | 0.244 | 0.818 |
 | [GBNet,  Semi-Supervised, 384x640, DDAD (D)](http://multispectral.sejong.ac.kr:8080/share.cgi?ssid=0rycygL) | 0.124 | 2.476 | 13.276 | 0.220 | 0.846 |
 
 ## References
