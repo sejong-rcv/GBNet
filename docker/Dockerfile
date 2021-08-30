@@ -3,8 +3,8 @@
 FROM nvidia/cuda:10.1-devel-ubuntu18.04
 
 ENV PROJECT=gbnet
-ENV PYTORCH_VERSION=1.8.1
-ENV TORCHVISION_VERSION=0.9.1
+ENV PYTORCH_VERSION=1.7.1+cu101
+ENV TORCHVISION_VERSION=0.8.2+cu101
 ENV CUDNN_VERSION=7.6.5.32-1+cuda10.1
 ENV NCCL_VERSION=2.4.8-1+cuda10.1
 ENV HOROVOD_VERSION=65de4c961d1e5ad2828f2f6c4329072834f27661
@@ -86,7 +86,7 @@ RUN pip install future typing numpy pandas matplotlib jupyter h5py \
 
 # Install PyTorch
 RUN pip install torch==${PYTORCH_VERSION} \
-    torchvision==${TORCHVISION_VERSION} && ldconfig
+    torchvision==${TORCHVISION_VERSION} -f https://download.pytorch.org/whl/torch_stable.html && ldconfig
 
 # # Install apex
 # RUN mkdir /workspace
