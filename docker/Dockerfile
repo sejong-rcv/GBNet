@@ -131,7 +131,7 @@ ENV PYTHONPATH="/workspace/dgp:$PYTHONPATH"
 
 # Override DGP wandb with required version
 RUN pip install wandb==0.8.21
-
+RUN pip install horovod
 # Expose Port for jupyter (8888)
 EXPOSE 8888
 

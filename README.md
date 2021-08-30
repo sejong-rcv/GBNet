@@ -1,17 +1,50 @@
 ## GBNet : Gradient Boosting Network for Monocular Depth Estimation
+
+This is the reference PyTorch implementation for training and testing depth estimation models, and it based on the [**PackNet**](#cvpr-packnet) code. 
 ## Install
+
+We recommend using docker.  To setup your environment, type in a terminal:
 
 ```bash
 git clone https://github.com/sejong-rcv/GBNet
 cd GBNet
 # if you want to use docker (recommended)
 make docker-build
+
+```
+
+if you want to run directly inside our container, you can do it in one step:
+
+```
+# single GPU
+make docker-run COMMAND="some-command"
+# multi-GPU
+make docker-run-mpi COMMAND="some-command"
+```
+
+If you want to run any of the commands in container, you can do in one step:
+```
 make docker-start-interactive
 ```
 
+If you want to use features related Weights & Biases (WANDB) (for experiment management/visualization), then you should create associated accounts and configure your shell with the following environment variables:
 
+```
+export WANDB_ENTITY="something"
+export WANDB_API_KEY="something"
+```
+To enable WANDB logging, you can then set the corresponding configuration parameters in configs/<your config>.yaml (cf. configs/default_config.py for defaults and docs):
+```
+wandb:
+    dry_run: True                                 # Wandb dry-run (not logging)
+    name: ''                                      # Wandb run name
+    project: os.environ.get("WANDB_PROJECT", "")  # Wandb project
+    entity: os.environ.get("WANDB_ENTITY", "")    # Wandb entity
+    tags: []                                      # Wandb tags
+    dir: ''                                       # Wandb save folder
+```
 ## Datasets
-
+Datasets are assumed to be downloaded in /data/datasets/<dataset-name> (can be a symbolic link).
 ### Dense Depth for Autonomous Driving (DDAD)
 
 
@@ -21,7 +54,7 @@ curl -s https://tri-ml-public.s3.amazonaws.com/github/DDAD/datasets/DDAD.tar | t
 ## Training
 
 ```bash
-python3 scripts/train.py <config.yaml or checkpoint.ckpt>
+python3 scripts/train.py configs/train_ddad.yaml
 ```
 
 
@@ -29,7 +62,7 @@ python3 scripts/train.py <config.yaml or checkpoint.ckpt>
 
 
 ```bash
-python3 scripts/eval.py --checkpoint <checkpoint.ckpt> [--config <config.yaml>]
+python3 scripts/eval.py --checkpoint <checkpoint.ckpt> --config configs/eval_ddad.yaml
 ```
 
 You can also directly run inference on a single image or folder:
@@ -51,7 +84,7 @@ python3 scripts/infer.py --checkpoint <checkpoint.ckpt> --input <image or folder
 
 ## References
 
-[**GBNet**](#GBNet) 
+[**GBNet**](#GBNet) is based on [**PackNet**](#cvpr-packnet) code. 
 
 <a id="GBNet"> </a>
 **GBNet : Gradient Boosting Network for Monocular Depth Estimation (ICCAS)** \
