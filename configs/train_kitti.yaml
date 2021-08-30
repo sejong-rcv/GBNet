@@ -7,11 +7,11 @@ wandb:
 model:
     name: 'VelSupModel'
     optimizer:
-        name: 'AdamW'
+        name: 'Adam'
         depth:
-            lr: 0.00006
+            lr: 0.0002
         pose:
-            lr: 0.00006
+            lr: 0.0002
     scheduler:
         name: 'StepLR'
         step_size: 30
