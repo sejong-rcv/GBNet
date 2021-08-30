@@ -1,10 +1,9 @@
 wandb:
-    dry_run: True                        # Wandb dry-run (not logging)
-    name: 'GBNet'                                      # Wandb run name
-    project: "DPT"  # Wandb project
-    entity: "bigchan"    # Wandb entity
-    tags: []                                      # Wandb tags
-    dir: './'  
+    dry_run: False                                 # Wandb dry-run (not logging)
+    name: ''                                      # Wandb run name
+    project: ""  # Wandb project
+    entity: ""    # Wandb entity
+    dir: './' 
 model:
     name: 'VelSupModel'
     optimizer:

@@ -20,10 +20,6 @@ from packnet_sfm.utils.reduce import all_reduce_metrics, reduce_dict, \
 from packnet_sfm.utils.save import save_depth
 from packnet_sfm.models.model_utils import stack_batch
 
-from dpt.models import DPTDepthModel 
-from dpt.SwinDPT import DPTSwinNet
-from Swin.PackSwin import PackSwinNet
-from Swin.FeatSwin import FeatSwinNet
 class ModelWrapper(torch.nn.Module):
     """
     Top-level torch.nn.Module wrapper around a SfmModel (pose+depth networks).
