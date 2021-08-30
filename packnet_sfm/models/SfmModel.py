@@ -1,6 +1,7 @@
 # Copyright 2020 Toyota Research Institute.  All rights reserved.
 
 import random
+import torch
 import torch.nn as nn
 from packnet_sfm.utils.image import flip_model, interpolate_scales
 from packnet_sfm.geometry.pose import Pose
