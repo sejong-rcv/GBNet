@@ -5,7 +5,7 @@ wandb:
     entity: ""    # Wandb entity
     dir: './' 
 model:
-    checkpoint_path: /workspace/packnet-sfm/PackNet01_MR_velsup_CStoK.ckpt
+    checkpoint_path: /workspace/gbnet/PackNet01_MR_velsup_CStoK.ckpt
     name: 'SelfSupModel'
     optimizer:
         name: 'Adam'

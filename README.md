@@ -53,6 +53,8 @@ curl -s https://tri-ml-public.s3.amazonaws.com/github/DDAD/datasets/DDAD.tar | t
 ```
 ## Training
 
+- To initialize the packnet, download pre-trained weight in [github](https://github.com/TRI-ML/packnet-sfm)
+
 ```bash
 python3 scripts/train.py configs/train_ddad.yaml
 ```
